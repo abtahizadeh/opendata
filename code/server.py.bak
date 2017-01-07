@@ -1,0 +1,51 @@
+#!/usr/bin/python
+"""Open-Data REST Server."""
+# Info: https://github.com/dbader/apidoc-example/
+
+import mongodb
+from flask import *
+import json
+
+app = Flask(__name__)
+db_name = 'opendatadb'
+db = mongodb.connect(db_name)
+
+
+@app.route('/list/<string:c_name>/<string:id>', methods=['GET'])
+def list_one(c_name, id):
+    res = []
+    a = {"_id": "null"}
+    a['_id'] = id
+    print a
+    db2 = mongodb.connect(db_name)
+    t = mongodb.showone(db2, c_name, a)
+    for i in t:
+        res.append(i)
+    return json.dumps(res)
+
+
+@app.route('/list/<string:c_name>/<string:date>', methods=['GET'])
+def list_doc(c_name, date):
+    res = []
+    db2 = mongodb.connect(db_name)
+    c = '$lt'
+    t = mongodb.queryrange(db2, date, c)
+    for i in t:
+        res.append(i)
+    return json.dumps(res)
+
+
+@app.route('/download/<string:code>', methods=['GET'])
+def download(c_name, date):
+    # Change to download
+    res = []
+    db2 = mongodb.connect(db_name)
+    c = '$lt'
+    t = mongodb.queryrange(db2, date, c)
+    for i in t:
+        res.append(i)
+    return json.dumps(res)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5001)

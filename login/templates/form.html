@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>:: Open Data API ::</title>
+		<link rel="stylesheet" type="text/css" href="/static/view.css" media="all">
+	</head>
+	<body id="main_body" >
+		
+		<img id="top" src="/static/top.png" alt="">
+		<div id="form_container">
+			
+			<h1><a></a></h1>
+			<form id="api_reg_form" class="appnitro"  method="post" action="">
+				<div class="form_description">
+					<h2>OPEN DATA API</h2>
+					<p>Realizing Open Data within Empirical Software Engineering: An Experience Report</p>
+					<br>
+					<p>If you already have an account, <br>you can access the API: <a href="http://opendata.soccerlab.polymtl.ca/index"><b>OPEN DATA API</b></a></p>
+					<p>If you don't have an account, please use this form to register:</p>
+					<br>
+					<br>
+					{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						<ul class="flashes">
+							{% for message in messages %}
+								<div class="message_flash"><font color="red">{{ message }}</font></div>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				{% endwith %}
+			</div>
+			<ul >
+				
+				<li id="li_1" >
+					<label class="description" for="element_1">User Name </label>
+					<div>
+						<input id="element_1" name="username" class="element text medium" type="text" maxlength="255" value="" required="required"/>
+					</div>
+				</li>		<li id="li_2" >
+				<label class="description" for="element_2">Password </label>
+				<div>
+					<input id="element_2" name="password" class="element text medium" type="password" maxlength="255" value="" required="required"/>
+				</div>
+			</li>		<li id="li_3" >
+			<label class="description" for="element_3">Institute </label>
+			<div>
+				<input id="element_3" name="ins" class="element text medium" type="text" maxlength="255" value="" required="required"/>
+			</div>
+		</li>		<li id="li_4" >
+		<label class="description" for="element_4">Email Address </label>
+		<div>
+			<input id="element_4" name="email" class="element text medium" type="text" maxlength="255" value="" required="required"/>
+		</div>
+	</li>
+	
+	<li class="buttons">
+		<input type="hidden" name="form_id" value="97" />
+		
+		<input id="saveForm" class="button_text" type="submit" name="submit" value="Register" />
+	</li>
+</ul>
+</form>
+<div id="footer">
+Ecole Polytechnique Montreal
+</div>
+</div>
+<img id="bottom" src="/static/bottom.png" alt="">
+</body>
+</html>

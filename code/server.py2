@@ -1,0 +1,46 @@
+#!/usr/bin/python
+"""OPEN DATA API REST SERVER."""
+__author__ = 'AMir'
+import uuid
+import bottle
+
+app = bottle.app()
+
+
+@app.hook('after_request')
+def enable_cors():
+    headers = bottle.response.headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'OPTIONS, GET'
+    headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type'
+
+
+@app.route('/info/', method=['OPTIONS', 'GET'])
+def get_info():
+    """
+    @api {GET} /info/ API Information
+    @apiName Info
+    @apiGroup General
+    @apiDescription Retrieves general information about the API
+    @apiSuccess (Success 200) {UUID} request_id Request unique identifier
+    @apiSuccess (Success 200) {String} results General information about the API
+    @apiSampleRequest /info/
+    @apiExample cURL example
+    $ curl -i http://opendata.soccerlab.polymtl.ca:5001/info/
+    @apiSuccessExample {js} Success-Response:
+        HTTP/1.0 200 OK
+        {
+            "request_id": "ad506913-a073-4d23-9f95-388d1c1e2c46",
+            "result": "Information!"
+        }
+    """
+    if bottle.request == 'OPTIONS':
+        return {}
+
+    return {
+        'request_id': str(uuid.uuid4()),
+        'result': "TO ADD INFO HERE ...!"
+    }
+
+if __name__ == '__main__':
+    bottle.run(host='0.0.0.0', port=5001)
