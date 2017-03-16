@@ -84,7 +84,7 @@ def execute(dir, remote):
 
             f1 = cli.Flag(
                 ["-f", "--force"])
-            val = cli.Flag(["-i", "--internal-edit-todo"], requires=["-t"])
+            val = cli.Flag(["-i", "--internal"], requires=["-t"])
 
             assert val is not None
             process = Popen(val, shell=True, stdout=PIPE, stderr=PIPE)
@@ -94,7 +94,7 @@ def execute(dir, remote):
 
             cprint('GIT Force', 'green')
 
-            val = cli.SwitchAttr(["-t", "--internal-todo-filename"], requires=["-i"],
+            val = cli.SwitchAttr(["-t", "--flags"], requires=["-i"],
                                  argtype=cli.ExistingFile, argname="<file>")
             process = Popen(val, shell=True, stdout=PIPE, stderr=PIPE)
             if not PIPE:
